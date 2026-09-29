@@ -1,59 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { BLESSING_KEY, EMPTY_BLESSINGS, localDay, readBlessings, receiveBlessing } from "./blessings";
+import BlessingCounter from "./blessing-counter";
+
 
 function Star({ className = "" }: { className?: string }) {
   return <svg className={className} viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M40 0 47 30 69 11 50 33 80 40 50 47 69 69 47 50 40 80 33 50 11 69 30 47 0 40 30 33 11 11 33 30Z" fill="currentColor" /></svg>;
 }
 
 export default function Home() {
-  const [blessings, setBlessings] = useState(EMPTY_BLESSINGS);
-  const [day, setDay] = useState("");
-  const [ready, setReady] = useState(false);
-  const [pending, setPending] = useState(false);
-  const [storageError, setStorageError] = useState(false);
-  const blessed = Boolean(day && blessings.lastDay >= day);
-
-  useEffect(() => {
-    const sync = () => {
-      setDay(localDay());
-      try {
-        setBlessings(readBlessings(localStorage.getItem(BLESSING_KEY)));
-        setStorageError(false);
-      } catch { setStorageError(true); }
-      setReady(true);
-    };
-    sync();
-    window.addEventListener("storage", sync);
-    window.addEventListener("focus", sync);
-    const timer = window.setInterval(sync, 1000);
-    return () => {
-      window.removeEventListener("storage", sync);
-      window.removeEventListener("focus", sync);
-      window.clearInterval(timer);
-    };
-  }, []);
-
-  async function bless() {
-    if (!ready || pending || blessed) return;
-    setPending(true);
-    try {
-      const claim = () => {
-        const today = localDay();
-        const current = readBlessings(localStorage.getItem(BLESSING_KEY));
-        const next = receiveBlessing(current, today);
-        localStorage.setItem(BLESSING_KEY, JSON.stringify(next));
-        setBlessings(next);
-        setDay(today);
-        setStorageError(false);
-      };
-      if (navigator.locks) await navigator.locks.request(BLESSING_KEY, claim);
-      else claim();
-    } catch { setStorageError(true); }
-    finally { setPending(false); }
-  }
   return (
     <main id="top">
       <div className="grain" aria-hidden="true" />
@@ -85,9 +40,11 @@ export default function Home() {
 
       <section className="scripture section" id="rules"><div className="section-label"><span>02 — СВЯЩЕННОЕ ПИСАНИЕ</span><span>ТОМ I. ОН ЖЕ ПОСЛЕДНИЙ.</span></div><div className="scripture-inner"><span className="quote-mark" aria-hidden="true">“</span><h2>Правила религии: поклонятся Великой Василисе(Ва Васи) и все в целом лол</h2><div className="scripture-end"><span /> <Star /> <span /></div><p>Вот и всё писание. Ты уже просветлён.</p></div></section>
 
-      <section className="ritual section" id="ritual"><div className="ritual-symbol"><Star /></div><div className="eyebrow">03 — ТВОЙ МАЛЕНЬКИЙ РИТУАЛ</div><h2>Добавь немного<br /><em>величия в свой день.</em></h2><p>Одно благословение от Василисы в день. Навсегда с тобой.</p><div className="blessing-counter"><strong>{ready ? blessings.count : "—"}</strong><span>ТВОИХ БЛАГОСЛОВЕНИЙ ОТ ВАСИЛИСЫ</span></div><button className={`button ${blessed ? "is-blessed" : ""}`} disabled={!ready || pending || blessed || storageError} onClick={bless}>{blessed ? "Благословение получено" : pending ? "Получаем благословение…" : "Получить благословение"}<span>{blessed ? "✦" : "↗"}</span></button><div className="blessing" role="status" aria-live="polite">{storageError ? "Не удалось сохранить благословение. Разреши хранение данных в браузере и обнови страницу." : blessed ? "Ва Вася одобряет. Следующее благословение — завтра. Отменить полученное нельзя." : "Новое благословение — каждый день после полуночи по твоему времени."}</div><p className="storage-note">Твой счётчик сохраняется в этом браузере.</p></section>
+      <section className="ritual section" id="ritual"><div className="ritual-symbol"><Star /></div><div className="eyebrow">03 — ТВОЙ МАЛЕНЬКИЙ РИТУАЛ</div><h2>Добавь немного<br /><em>величия в свой день.</em></h2><p>Одно благословение от Василисы в день. Навсегда с тобой.</p><BlessingCounter /></section>
 
       <footer><div className="footer-top"><a className="brand" href="#top"><Star /> Храмам<span>®</span></a><p>Вся слава — Великой Василисе.<br />Всё остальное — неважно.</p><a href="#top" className="back-top" aria-label="Наверх">↑</a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} ХРАМАМ</span><span>Сайт — рофл. Религия вымышленная. Всё несерьёзно ♡</span></div></footer>
     </main>
   );
 }
+
+

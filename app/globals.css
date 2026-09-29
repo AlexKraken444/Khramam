@@ -11,3 +11,4 @@
 
 .hero h1{font-size:clamp(58px,6.6vw,96px);letter-spacing:-2px}.blessing-counter{display:flex;flex-direction:column;gap:10px;margin:25px 0 30px}.blessing-counter strong{font-family:'Cormorant Garamond',Georgia,serif;font-size:72px;font-weight:400;line-height:1;font-variant-numeric:tabular-nums}.blessing-counter>span{font-size:8px;letter-spacing:1.5px;color:var(--muted)}.button:disabled{cursor:default;transform:none;box-shadow:none}.button:disabled:not(.is-blessed){opacity:.55}.is-blessed:disabled:hover{background:#762239}.ritual .storage-note{font-size:10px;margin:12px 0 0}.blessing{line-height:1.8}@media(max-width:760px){.hero h1{font-size:clamp(45px,12vw,80px);letter-spacing:-1px}}
 
+.retry-counter{background:none;border:0;border-bottom:1px solid var(--muted);color:var(--cream);font:inherit;font-size:11px;cursor:pointer;padding:5px}
