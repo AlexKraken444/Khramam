@@ -46,11 +46,12 @@ export default function BlessingCounter() {
   }, [refresh]);
 
   return <>
-    <div className="blessing-counter"><strong>{counter ? counter.total.toLocaleString("ru-RU") : "—"}</strong><span>БЛАГОСЛОВЕНИЙ ПОЛУЧЕНО ВСЕМИ ПОЛЬЗОВАТЕЛЯМИ</span></div>
+    <div className="blessing-counter"><strong>{counter ? counter.total.toLocaleString("ru-RU") : "—"}</strong><span>БЛАГОСЛОВЕНИЙ ЗА ВСЁ ВРЕМЯ</span></div>
     <button className={`button ${counter?.blessed ? "is-blessed" : ""}`} disabled={!counter || pending || counter.blessed || Boolean(error)} onClick={() => void refresh(true)}>{counter?.blessed ? "Благословение получено" : pending ? "Получаем благословение…" : "Получить благословение"}<span>{counter?.blessed ? "✦" : "↗"}</span></button>
     <div className="blessing" role="status" aria-live="polite">{error || (counter?.blessed ? "Ва Васи одобряет. Следующее благословение — завтра. Отменить полученное нельзя." : "Новое благословение — каждый день после полуночи по Москве.")}</div>
     {error && <button className="retry-counter" onClick={() => void refresh()}>Обновить счётчик</button>}
-    <p className="storage-note">Это общий итог всех посетителей Храмам. Твоё благословение тоже прибавляется сюда.</p>
+
   </>;
 }
+
 
