@@ -14,25 +14,24 @@ export default function Home() {
     <main id="top">
       <div className="grain" aria-hidden="true" />
       <header className="header">
-        <a className="brand" href="#top" aria-label="Храмам — на главную"><Star /> Храмам<span>®</span></a>
+        <a className="brand" href="#top" aria-label="Храммам — на главную"><Star /> Храммам</a>
         <nav aria-label="Главная навигация"><a href="#about">Божество</a><a href="#rules">Писание</a><a className="nav-ritual" href="#ritual">Приобщиться <span>↗</span></a></nav>
       </header>
 
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-copy">
           <h1 id="hero-title">ЛУЧШАЯ<br /><em>ВЕРА</em></h1>
-          <p className="hero-description">Добро пожаловать в Храмам.<br />Здесь одна богиня, одно правило<br />и ни одного серьёзного лица.</p>
+          <p className="hero-description">Добро пожаловать в Храммам.<br />Здесь одна богиня, одно правило<br />и ни одного серьёзного лица.</p>
           <a className="button" href="#about">Узреть величие <span>↗</span></a>
           <div className="hero-note"><span>01 / ∞</span><span>МАЛО ПРАВИЛ.<br />БЕСКОНЕЧНО МНОГО ВЕЛИЧИЯ.</span></div>
         </div>
         <div className="portrait-scene" id="deity">
           <div className="halo halo-one" aria-hidden="true" /><div className="halo halo-two" aria-hidden="true" />
           <span className="orbit-label">БОЖЕСТВЕННОСТЬ НЕ ТРЕБУЕТ ДОКАЗАТЕЛЬСТВ</span>
-          <div className="portrait"><Image src="/vasilissa.jpg" alt="Великая Василиса — вымышленное божество Храмам" fill priority sizes="(max-width: 760px) 85vw, 42vw" /><div className="portrait-shade" /><div className="portrait-caption"><span>ЕДИНСТВЕННАЯ И НЕПОВТОРИМАЯ</span><h2>Великая<br /><em>Василиса</em></h2><div className="caption-bottom"><span>она же Ва Васи</span><Star /></div></div></div>
+          <div className="portrait"><Image src="/vasilissa.jpg" alt="Великая Василиса — вымышленное божество Храммам" fill priority sizes="(max-width: 760px) 85vw, 42vw" /><div className="portrait-shade" /><div className="portrait-caption"><span>ЕДИНСТВЕННАЯ И НЕПОВТОРИМАЯ</span><h2>Великая<br /><em>Василиса</em></h2><div className="caption-bottom"><span>она же Ва Васи</span><Star /></div></div></div>
           <div className="seal" aria-label="100% божество"><Star /><span>100%<br />БОЖЕСТВО</span></div>
           <Star className="floating-star" />
         </div>
-        <a href="#about" className="scroll-hint">ЛИСТАЙ НИЖЕ <span>↓</span></a>
       </section>
 
 
@@ -42,10 +41,11 @@ export default function Home() {
 
       <section className="ritual section" id="ritual"><div className="ritual-symbol"><Star /></div><div className="eyebrow">03 — ТВОЙ МАЛЕНЬКИЙ РИТУАЛ</div><h2>Добавь немного<br /><em>величия в свой день.</em></h2><p>Одно благословение от Василисы в день. Навсегда с тобой.</p><BlessingCounter /></section>
 
-      <footer><div className="footer-top"><a className="brand" href="#top"><Star /> Храмам<span>®</span></a><p>Вся слава — Великой Василисе.<br />Всё остальное — неважно.</p><a href="#top" className="back-top" aria-label="Наверх">↑</a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} ХРАМАМ</span><span>Сайт — рофл. Религия вымышленная. Всё несерьёзно ♡</span></div></footer>
+      <footer><div className="footer-top"><a className="brand" href="#top"><Star /> Храммам</a><p>Вся слава — Великой Василисе.<br />Всё остальное — неважно.</p><a href="#top" className="back-top" aria-label="Наверх">↑</a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} ХРАММАМ</span><span>Сайт — рофл. Религия вымышленная.</span></div></footer>
     </main>
   );
 }
+
 
 
 

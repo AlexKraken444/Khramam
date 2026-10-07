@@ -1,13 +1,20 @@
+"use client";
+
+import { useState } from "react";
+
 export default function ScriptureBook() {
+  const [open, setOpen] = useState(false);
   return (
-    <details className="scripture-book">
-      <summary className="book-cover">
-        <span className="book-edition">СВЯЩЕННОЕ ПИСАНИЕ ХРАМАМ</span>
+    <div className="scripture-book" data-open={open}>
+      <button type="button" className="book-cover" aria-expanded={open} aria-controls="va-ava-pages" onClick={() => setOpen(value => !value)}>
+        <span className="book-edition">СВЯЩЕННОЕ ПИСАНИЕ ХРАММАМА</span>
         <span className="book-star" aria-hidden="true">✦</span>
-        <h2>Ва Ава</h2>
+        <span className="book-title">Ва Ава</span>
         <span className="book-subtitle">Во славу Великой Василисы</span>
         <span className="book-action"><span className="book-open-label">Открыть книгу ↗</span><span className="book-close-label">Закрыть книгу ×</span></span>
-      </summary>
+      </button>
+      <div className="book-reveal" id="va-ava-pages" aria-hidden={!open} inert={!open}>
+      <div className="book-reveal-inner">
       <div className="book-spread" aria-label="Книга Ва Ава — две страницы">
         <article className="book-page" aria-label="Страница 1 из 2">
           <span className="page-running-title">ВА АВА · НАЧАЛО</span>
@@ -27,7 +34,7 @@ export default function ScriptureBook() {
         <article className="book-page" aria-label="Страница 2 из 2">
           <span className="page-running-title">ВА АВА · ПОКЛОНЕНИЕ</span>
           <p>{`Правила поклонения Ва Васи просты:
-Раз в день посещайте Храмам
+Раз в день посещайте Храммам
 и получайте благословение.
 И конечно же воспевайте Ва Васи
 В любом удобном случае`}</p>
@@ -37,6 +44,9 @@ export default function ScriptureBook() {
           <span className="book-page-number">2 / 2</span>
         </article>
       </div>
-    </details>
+      </div>
+      </div>
+    </div>
   );
 }
+
